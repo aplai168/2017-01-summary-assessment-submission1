@@ -1,0 +1,24 @@
+{
+  "name": "front-end",
+  "description": "An open-ended front end prompt",
+  "author": "Hack Reactor <curriculum.team@hackreactor.com>",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "json-server --watch db.json --routes routes.json",
+    "lint": "eslint ./"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.5.1",
+    "babel-core": "^6.5.2",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
+    "json-server": "^0.8.9"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  }
+}

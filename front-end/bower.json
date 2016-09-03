@@ -1,0 +1,17 @@
+{
+  "name": "front-end",
+  "description": "An open-ended front end prompt",
+  "authors": [
+    "Hack Reactor <curriculum.team@hackreactor.com>"
+  ],
+  "license": "UNLICENSED",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ]
+}
