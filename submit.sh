@@ -86,7 +86,7 @@ fi
 
 
 # Ensure closing comments have been added
-clif ! [[ `git diff $REPO_REMOTE_ALIAS/$REPO_BASE_BRANCH -- closing_comments.md` ]]; then
+if ! [[ `git diff $REPO_REMOTE_ALIAS/$REPO_BASE_BRANCH -- closing_comments.md` ]]; then
   echo "${RED}ERROR:${COLORLESS} Closing comments not found."
   echo "${YELLOW}Please fill out and commit your changes to the closing_comments.md file and try again.${COLORLESS}"
   exit 1
