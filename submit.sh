@@ -94,15 +94,15 @@ fi
 
 
 # Review submission
-read -p "${MAGENTA}Review your submission.${COLORLESS} Press [ENTER] to view a diff of your work..."
-git diff $REPO_REMOTE_ALIAS/$REPO_BASE_BRANCH
+# read -p "${MAGENTA}Review your submission.${COLORLESS} Press [ENTER] to view a diff of your work..."
+# git diff $REPO_REMOTE_ALIAS/$REPO_BASE_BRANCH
 
 
 # Confirm review
-read -p "${MAGENTA}Is everything there? <y/N> ${COLORLESS}" response
-if ! [[ $response =~ [yY](es)* ]]; then
-  exit 0
-fi
+# read -p "${MAGENTA}Is everything there? <y/N> ${COLORLESS}" response
+# if ! [[ $response =~ [yY](es)* ]]; then
+#   exit 0
+# fi
 
 
 # Push work
