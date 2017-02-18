@@ -25,6 +25,6 @@ Some tests have been provided for you to get you started. Run `npm test` inside 
 
 Your API will be further tested during code review by sending GET, POST, PUT and DELETE requests to the above endpoints. If you wish to interact with your server during development (recommended), consider using [Postman](https://www.getpostman.com/).
 
-Your web server will not and does not need to persist data. It should, however, interact with `models/users.js`, and reflect any changes that have occured over the course of a given session. 
+Your web server will not and does not need to persist data. It should, however, interact with `models/users.js`, and reflect any changes that have occurred over the course of a given session.
 
 In order to accomplish this you will need to build out the helper functions in `models/users.js`. Those functions need to interact with the objects in the `users` array to serve data and enact changes over a given server session. `underscore` is been installed so feel free to use it if you wish.

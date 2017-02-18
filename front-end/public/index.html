@@ -11,13 +11,13 @@
 
     <div ng-controller="UserController" ng-init="initialize()">
       <form>
-        <input name="name" placeholder="Add User Here" />
-        <input email="email" placeholder="Add Email Here"/>
+        <input name="name" placeholder="Add User Here" ng-model="users.name"/>
+        <input email="email" placeholder="Add Email Here" ng-model="users.email"/>
         <button ng-click="add()">Add User</button>
       </form>
       <ul ng-repeat="d in data.allUsers">
         <li>
-          {{ d }}
+          {{ d.name}} </br> {{ d.email }} 
         </li>
       </ul>
     </div>

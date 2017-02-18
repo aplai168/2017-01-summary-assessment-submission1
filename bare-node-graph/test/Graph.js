@@ -49,6 +49,8 @@ describe('Graph.prototype.numberOfNodes', function () {
   });
 
   they('should return a number', function (graph) {
+    console.log(graph.numberOfNodes(),'testing');
+    expect(graph.numberOfNodes()).to.be.a('number');
     expect(graph.numberOfNodes()).to.be.a('number');
   });
 
@@ -56,9 +58,9 @@ describe('Graph.prototype.numberOfNodes', function () {
     expect(graph.numberOfNodes()).to.equal(expected);
   }, {
     basic: 6,
-    withNewline: 6,
     doubleDigits: 13,
-    nonConsecutive: 5
+    nonConsecutive: 5,
+    withNewline: 6
   });
 
 });

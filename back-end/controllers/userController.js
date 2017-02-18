@@ -3,7 +3,10 @@ var User = require('../models/User');
 // Given the name of a user, retrieve their record from the database
 exports.getUserByName = function (name, callback) {
   // TODO
-  User.find(name, callback);
+  User.find(name, (err, data) => {
+    if (err) console.log(err);
+    return callback(data);
+  });
 };
 
 // Given the name of a user, update their `email` property
@@ -13,7 +16,8 @@ exports.updateEmailByName = function (name, newEmail, callback) {
   // var query = { name: 'borne' };
   User.findOneAndUpdate({ name: name }, { email: newEmail }, (err, data) => {
     if (err) console.log(err);
-    data.save(callback);
+    // data.save(callback);
+    return callback(data);
   });
 };
 
@@ -22,7 +26,7 @@ exports.readAllUsers = function (callback) {
   // TODO
   User.find({}, (err, users) => {
     if (err) return err;
-    return callback;
+    return callback(data);
   });
 };
 

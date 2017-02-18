@@ -9,6 +9,8 @@
 const ang = angular.module('app', []);
 ang.controller('UserController', ['$scope', 'Users', function($scope, Users){
   $scope.data = {};
+  $scope.name = '';
+  $scope.email = '';
   $scope.initialize = function() {
     Users.getUsers()
     .then(function(allUsers) {
@@ -19,14 +21,12 @@ ang.controller('UserController', ['$scope', 'Users', function($scope, Users){
   $scope.add = function() {
     Users.addUser()
     .then(function(newUser) {
-      // look up how to really do this
-      // let added = {
-      //   newUser.name,
-      //   newUser.email,
-      // }
-      // $scope.data = added;
-    })
-  }
+      // $scope.data.allUsers = {
+      //   name: $scope.name,
+      //   email: $scope.email,
+      // };
+    });
+  };
 }]);
 
 

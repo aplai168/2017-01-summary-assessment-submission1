@@ -11,6 +11,7 @@ var fs = require('fs');
 var Graph = function (adjacencyListPath) {
   // Structure the graph in JavaScript in a way that will be of service to you
   this.nodes;
+  this.adjacencyListPath = adjacencyListPath;
 
   // String with your claim of the time complexity for `numberOfNodes`
   this.numberOfNodesTimeComplexity = "linear";
@@ -25,34 +26,41 @@ var Graph = function (adjacencyListPath) {
 
 // Returns the number of nodes in the graph
 Graph.prototype.numberOfNodes = function () {
-  //grab the files
-  // fs.readFile('/adjacency_lists/basic.txt', 'utf8', function(err, data) {
-  //   if (err) { throw err };
-  //   console.log(data);
-  //   let lines = data.split('\n');
-  //   return lines.length;
-  // });
-  let contents = fs.readFileSync('test/adjacency_lists/basic.txt', 'utf8');
+  // first answers
+  // let contents = fs.readFileSync('test/adjacency_lists/basic.txt', 'utf8');
+  // let lines = contents.split('\n');
+  // return lines.length;
+  // new answers ==========================================
+  // var files = [
+  //   'test/adjacency_lists/basic.txt',
+  //   'test/adjacency_lists/doubleDigits.txt',
+  //   'test/adjacency_lists/nonConsecutive.txt',
+  //   'test/adjacency_lists/withNewline.txt'
+  // ];
+  // let files = Object.keys(this.adjacencyListPath);
+  let path = this.adjacencyListPath.replace(/^.*[\\\/]/, '');
+  console.log(path, 'path')
+  let contents = fs.readFileSync('test/adjacency_lists/' + path, 'utf8');
   let lines = contents.split('\n');
+  for (var i = 0; i < lines.length; i++) {
+    if (lines[i] === '') {
+      lines.splice(i, 1);
+    }
+  }
+  // lines = lines.replace(/[ ,]+/g, ",")
   return lines.length;
-
 };
 
 // Returns an array of the edges for the passed in `node`
 Graph.prototype.getEdges = function (node) {
-  let contents = fs.readFileSync('test/adjacency_lists/basic.txt', 'utf8');
+  let path = this.adjacencyListPath.replace(/^.*[\\\/]/, '');
+  console.log(path, 'path')
+  let contents = fs.readFileSync('test/adjacency_lists/' + path, 'utf8');
   let arrayofLines = contents.split('\n');
-  var res = [];
-  var arr = [];
-  //now i can read the lines which loook like this
-  // 0 2 4 5 --> arrayoflines, 0 = arrayoflines[i][0], 2 = arrayoflines[i][1]
-  // 1 2 3 --> 1 = arrayoflines[i][0]
-  // 2 0 1 5
-  // 3 1
-  // 4 0 5
-  // 5 0 2 4
-  //loop through each line[0] and check if it matches passed in node
-  //if it does, then place the rest of the line into an array
+  for (var i = 0; i < arrayofLines.length; i++) {
+    arrayofLines[i] = arrayofLines[i].replace(/[ ,]+/g, ",");
+    arrayofLines[i].split(',');
+  }
   for (var i = 0; i < arrayofLines.length; i++) {
     if (arrayofLines[i][0] === node) {
       res = arrayofLines[i].split('\n,');
@@ -62,19 +70,29 @@ Graph.prototype.getEdges = function (node) {
     }
   }
   return res;
+
 };
 
 // Returns the number of edges for the graph.
 Graph.prototype.numberOfEdges = function () {
-  let contents = fs.readFileSync('test/adjacency_lists/basic.txt', 'utf8');
+  let path = this.adjacencyListPath.replace(/^.*[\\\/]/, '');
+  let contents = fs.readFileSync('test/adjacency_lists/' + path, 'utf8');
   let arrayofLines = contents.split('\n');
-  var res = [];
-  var arr = [];
-  var count = 0;
   for (var i = 0; i < arrayofLines.length; i++) {
-    count = arrayofLines[i].length;
+    if (arrayofLines[i] === '') {
+      arrayofLines.splice(i, 1);
+    }
+  }
+  var count = 0;
+  let res;
+  for (var i = 0; i < arrayofLines.length; i++) {
+    res = arrayofLines[i].replace(/[ ,]+/g, ",");
+    res.split(',');
+    count = res.length;
   }
   return count;
 };
 
+var graph = new Graph();
+console.log(graph.getEdges())
 module.exports = Graph;
