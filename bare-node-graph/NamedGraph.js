@@ -1,9 +1,12 @@
 var Graph = require('./Graph.js');
 
-var NamedGraph = function (adjacencyListPath, name) {
-};
+class NamedGraph extends Graph {
+  constructor(name, adjacencyListPath) {
+    super();
+    this.name = adjacencyListPath;
+  }
 
+}
 
 
 module.exports = NamedGraph;
-

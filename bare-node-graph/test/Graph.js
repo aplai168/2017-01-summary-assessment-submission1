@@ -8,9 +8,9 @@ var NamedGraph = require('../NamedGraph.js');
 // quadruple your test suite. Can you figure out how?
 var adjacencyListPaths = {
   basic: __dirname + '/adjacency_lists/basic.txt',
-  // doubleDigits: __dirname + '/adjacency_lists/doubleDigits.txt',
-  // nonConsecutive: __dirname + '/adjacency_lists/nonConsecutive.txt',
-  // withNewline: __dirname + '/adjacency_lists/withNewline.txt',
+  doubleDigits: __dirname + '/adjacency_lists/doubleDigits.txt',
+  nonConsecutive: __dirname + '/adjacency_lists/nonConsecutive.txt',
+  withNewline: __dirname + '/adjacency_lists/withNewline.txt',
 };
 
 // This function is used to run the same test on the graphs
