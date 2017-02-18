@@ -21,7 +21,21 @@ describe('Job Controller', function () {
 
   beforeEach(function (done) {
     clearDB(function () {
-      // TODO: Seed database with some jobs to run tests against. 
+      // TODO: Seed database with some jobs to run tests against.
+      var jobs = [
+        {
+          title: 'Magee',
+          description: 'constructor',
+          postedDate: '7/2/2016',
+          salary: 40000
+        },
+        {
+          title: 'Alice',
+          description: 'doctor',
+          postedDate: '8/5/2016',
+          salary: 1000000
+        },
+      ];
     });
   });
 

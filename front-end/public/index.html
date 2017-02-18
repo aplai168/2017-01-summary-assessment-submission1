@@ -1,2 +1,25 @@
-<!-- YOUR CODE HERE -->
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title>Add and View Users</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body>
+    <h1>Add and View Users</h1>
 
+    <div ng-controller="UserController" ng-init="initialize()">
+      <form>
+        <input name="name" placeholder="Add User Here" />
+        <input email="email" placeholder="Add Email Here"/>
+        <button ng-click="add()">Add User</button>
+      </form>
+      <ul ng-repeat="d in data.allUsers">
+        <li>
+          {{ d }}
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
