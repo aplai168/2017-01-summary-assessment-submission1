@@ -12,7 +12,7 @@ CYAN=$'\e[36m'
 COLORLESS=$'\e[0m'
 
 PREFIX_REGEX="^[0-9]{4}-[0-9]{2}"
-REPO_OWNER="remotebeta"
+REPO_OWNER="OperationSpark"
 REPO_NAME="summary-assessment-submission"
 REPO_BASE_BRANCH="master"
 REPO_REMOTE_ALIAS="solution"
