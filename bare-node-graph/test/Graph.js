@@ -49,7 +49,7 @@ describe('Graph.prototype.numberOfNodes', function () {
   });
 
   they('should return a number', function (graph) {
-    console.log(graph.numberOfNodes(),'testing');
+    // console.log(graph.numberOfNodes(),'testing');
     expect(graph.numberOfNodes()).to.be.a('number');
     expect(graph.numberOfNodes()).to.be.a('number');
   });

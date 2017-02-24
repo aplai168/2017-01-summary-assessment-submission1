@@ -26,73 +26,69 @@ var Graph = function (adjacencyListPath) {
 
 // Returns the number of nodes in the graph
 Graph.prototype.numberOfNodes = function () {
-  // first answers
-  // let contents = fs.readFileSync('test/adjacency_lists/basic.txt', 'utf8');
-  // let lines = contents.split('\n');
-  // return lines.length;
-  // new answers ==========================================
-  // var files = [
-  //   'test/adjacency_lists/basic.txt',
-  //   'test/adjacency_lists/doubleDigits.txt',
-  //   'test/adjacency_lists/nonConsecutive.txt',
-  //   'test/adjacency_lists/withNewline.txt'
-  // ];
-  // let files = Object.keys(this.adjacencyListPath);
-  let path = this.adjacencyListPath.replace(/^.*[\\\/]/, '');
-  console.log(path, 'path')
-  let contents = fs.readFileSync('test/adjacency_lists/' + path, 'utf8');
-  let lines = contents.split('\n');
-  for (var i = 0; i < lines.length; i++) {
-    if (lines[i] === '') {
-      lines.splice(i, 1);
+  if (this.adjacencyListPath) {
+    let path = this.adjacencyListPath.replace(/^.*[\\\/]/, '');
+    let contents = fs.readFileSync('test/adjacency_lists/' + path, 'utf8');
+    let lines = contents.split('\n');
+    for (var i = 0; i < lines.length; i++) {
+      if (lines[i] === '') {
+        lines.splice(i, 1);
+      }
     }
+    return lines.length;
+  } else {
+    console.log('undefined', this.adjacencyListPath, this)
   }
-  // lines = lines.replace(/[ ,]+/g, ",")
-  return lines.length;
+
 };
 
 // Returns an array of the edges for the passed in `node`
 Graph.prototype.getEdges = function (node) {
+  // let yes = this.adjacencyListPath.substring(url.lastIndexOf('/')+1);
+  // console.log(this.adjacencyListPath, 'PATH');
+  // console.log(typeof this.adjacencyListPath === 'string' && this.adjacencyListPath.split(''), 'PATH with split');
   let path = this.adjacencyListPath.replace(/^.*[\\\/]/, '');
-  console.log(path, 'path')
   let contents = fs.readFileSync('test/adjacency_lists/' + path, 'utf8');
   let arrayofLines = contents.split('\n');
   for (var i = 0; i < arrayofLines.length; i++) {
     arrayofLines[i] = arrayofLines[i].replace(/[ ,]+/g, ",");
     arrayofLines[i].split(',');
+    // console.log(arrayofLines[i], 'arrayofLines')
   }
   for (var i = 0; i < arrayofLines.length; i++) {
     if (arrayofLines[i][0] === node) {
       res = arrayofLines[i].split('\n,');
-      res = res[0];
-      res = res.split(' ');
+      res = res[0].split(',');
       res.shift();
+
     }
   }
   return res;
 
 };
 
-// Returns the number of edges for the graph.
+var arr = [];
 Graph.prototype.numberOfEdges = function () {
   let path = this.adjacencyListPath.replace(/^.*[\\\/]/, '');
   let contents = fs.readFileSync('test/adjacency_lists/' + path, 'utf8');
   let arrayofLines = contents.split('\n');
-  for (var i = 0; i < arrayofLines.length; i++) {
-    if (arrayofLines[i] === '') {
-      arrayofLines.splice(i, 1);
-    }
-  }
-  var count = 0;
   let res;
+  let sum = 0;
   for (var i = 0; i < arrayofLines.length; i++) {
-    res = arrayofLines[i].replace(/[ ,]+/g, ",");
-    res.split(',');
-    count = res.length;
+    arrayofLines[i] = arrayofLines[i].replace(/[ ,]+/g, ",");
+    arrayofLines[i].split(',');
   }
-  return count;
+  for (var i = 0; i < arrayofLines.length; i++) {
+    res = arrayofLines[i].split('\n,');
+    res = res[0].split(',');
+    res.forEach((number, i) => {
+      if (res[0] < number) {
+        sum++;
+      }
+    });
+  }
+  return sum;
 };
 
-var graph = new Graph();
-console.log(graph.getEdges())
+
 module.exports = Graph;

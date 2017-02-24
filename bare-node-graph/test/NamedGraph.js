@@ -34,6 +34,7 @@ describe('NamedGraph', function () {
   });
 
   they('should be sub classed from "Graph"', function (namedGraph) {
+    console.log(namedGraph, 'namedGraph')
     expect(namedGraph).to.be.instanceOf(Graph);
     expect(namedGraph).to.be.instanceOf(NamedGraph);
   });
