@@ -37,37 +37,41 @@ exports.setAll = function (newUsers) {
   return newUsers;
 };
 
-exports.getOne = function (id) {
-  _.filter(users, (user) => {
-    if (user.id === id) {
-      // console.log(user, 'user')
-      return user;
+exports.getOne = function (id, callback) {
+  let res;
+  for (var i = 0; i < users.length; i++) {
+    if(users[i].id === +id) {
+      res = users[i];
     }
-  });
+  }
+  callback(null, res);
 };
 
-exports.addOne = function (user) {
+exports.addOne = function (user, callback) {
   users.push(user);
-  // console.log(users, 'users');
+  callback(null, users);
 };
 
-exports.updateOne = function (id, newProperties) {
+exports.updateOne = function (id, newProperties, callback) {
+  console.log(newProperties, id, 'newProperties')
+
   _.each(users, (user) => {
-    if (user.id === id) {
-      user.id = newProperties.id;
+    if (user.id === +id) {
       user.name = newProperties.name;
       user.email = newProperties.email;
+      console.log(newProperties, 'updateOne')
     }
   });
   // console.log(users, 'users')
+  callback(null, users);
 };
 
-exports.deleteOne = function (id) {
+exports.deleteOne = function (id, callback) {
   _.each(users, (user, i) => {
-    console.log(user, 'id');
-    if (user.id === id) {
+    if (user && user.id === +id) {
       users.splice(i, 1);
     }
   });
-  // console.log(users, 'users');
+  callback(null, users);
+  console.log(users, 'users');
 };

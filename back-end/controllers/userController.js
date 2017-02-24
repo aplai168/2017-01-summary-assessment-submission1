@@ -5,10 +5,24 @@ exports.getUserByName = function (name, callback) {
   // TODO
   User.find(name, (err, data) => {
     if (err) console.log(err);
-    return callback(data);
+    return callback((err, data)=> {
+      if(err) return err;
+      else return data;
+    });
   });
 };
-
+//promise is used here
+// http://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate
+// example ==========================
+// var _findByEmail = function(email, success, fail){
+//   _model.findOne({email:email}, function(e, doc){
+//     if(e){
+//       fail(e)
+//     }else{
+//      success(doc);
+//    }
+//  });
+// }
 // Given the name of a user, update their `email` property
 exports.updateEmailByName = function (name, newEmail, callback) {
   // TODO
@@ -17,7 +31,10 @@ exports.updateEmailByName = function (name, newEmail, callback) {
   User.findOneAndUpdate({ name: name }, { email: newEmail }, (err, data) => {
     if (err) console.log(err);
     // data.save(callback);
-    return callback(data);
+    return callback((err, data)=> {
+      if(err) return err;
+      else return data;
+    });
   });
 };
 
@@ -26,7 +43,10 @@ exports.readAllUsers = function (callback) {
   // TODO
   User.find({}, (err, users) => {
     if (err) return err;
-    return callback(data);
+    return callback((err, data)=> {
+      if(err) return err;
+      else return data;
+    });
   });
 };
 

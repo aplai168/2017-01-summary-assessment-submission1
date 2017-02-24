@@ -1,4 +1,5 @@
 var expect = require('chai').expect;
+var sinon = require('sinon');
 var mongoose = require('mongoose');
 var User = require('../models/User');
 
@@ -50,26 +51,62 @@ describe('User Controller', function () {
       User.create(users, done);
     });
   });
-
-  it('should have a method that given the name of a user, retrieves their record from the database', function (done) {
-    // TODO: Write test(s) for a method exported by `userController` that behaves as described one line above
-    // HINT: The `done` passed in is quite important...
-    // THIS IS NOT TESTING ANYTHING
-
-    User.find('Zach', done);
-  });
-
-  it('should have a method that given the name of a user, updates their `email` property', function (done) {
-    // TODO: Write test(s) for a method exported by `userController` that behaves as described one line above
-    // HINT: The `done` passed in is quite important...
-    User.update({ name: 'Zach', email: 'metairie@zach.com' }, done);
-    User.find({ name: 'Zach', email: 'metairie@zach.com'}, done);
-  });
-
-  it('should have a method that reads all users from the database at once', function (done) {
-    // TODO: Write test(s) for a method exported by `userController` that behaves as described one line above
-    // HINT: The `done` passed in is quite important...
-
-  });
+  // it("retrieves by email", function(done){
+  //   User.getUserByName('Zach', function(doc){
+  //     doc.email.should.equal("zach@zach.com");
+  //     done();
+  //   });
+  // });
+  // it('should have a method that given the name of a user, retrieves their record from the database', function (done) {
+  //   // TODO: Write test(s) for a method exported by `userController` that behaves as described one line above
+  //   // HINT: The `done` passed in is quite important...
+  //   // THIS IS NOT TESTING ANYTHING
+  //
+  //   User.find({ name: 'Zach'}, (err, results) => {
+  //     expect(results).toEqual('Zach');
+  //     done();
+  //   })
+  //   // db.createCollection(collectionName, function(err, collection) {
+  //   //   collection.find().toArray(function(err, results) {
+  //   //     // Should have one result:
+  //   //     expect(results.length).toEqual(1);
+  //   //
+  //   //     /* TODO edit this test to match the name of the
+  //   //      * property where you're storing the page source:*/
+  //   //     expect(results[0].pageSource).toMatch(/Google/);
+  //   //
+  //   //     db.close();
+  //   //     done();
+  //   //   });
+  //   //   });
+  //
+  //   // it('should check for reposts with same name', sinon.test(function() {
+  //   //     this.stub(User, 'find');
+  //   //     var expectedName = 'Zach';
+  //   //     var m = new User({ name: 'Zach' });
+  //   //
+  //   //     m.getUserByName(function() { });
+  //   //
+  //   //     sinon.assert.calledWith(User.findOne, {
+  //   //         name: expectedName,
+  //   //         // repost: true
+  //   //     });
+  //   // }));
+  //
+  //
+  // });
+  //
+  // it('should have a method that given the name of a user, updates their `email` property', function (done) {
+  //   // TODO: Write test(s) for a method exported by `userController` that behaves as described one line above
+  //   // HINT: The `done` passed in is quite important...
+  //   User.findOneAndUpdate({ name: 'Zach' }, {email: 'metairie@zach.com' }, done);
+  //   // User.find({ name: 'Zach', email: 'metairie@zach.com'}, done);
+  // });
+  //
+  // it('should have a method that reads all users from the database at once', function (done) {
+  //   // TODO: Write test(s) for a method exported by `userController` that behaves as described one line above
+  //   // HINT: The `done` passed in is quite important...
+  //
+  // });
 
 });

@@ -9,7 +9,7 @@ exports.createJob = function (job, callback) {
     postedDate: job.date,
     salary: job.salary,
   }, (err, data) => {
-    callback(data);
+    callback(data); // first param of a callback is always error
   });
 };
 
@@ -21,3 +21,8 @@ exports.getHighPayingJobs = function (callback) {
     return callback(data);
   })
 };
+// fork
+// clone
+// checkout to aplai168 branch
+// make changes
+// pull request to aplai168 branch

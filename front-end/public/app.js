@@ -9,22 +9,30 @@
 const ang = angular.module('app', []);
 ang.controller('UserController', ['$scope', 'Users', function($scope, Users){
   $scope.data = {};
-  $scope.name = '';
-  $scope.email = '';
+  $scope.users = {};
+
   $scope.initialize = function() {
     Users.getUsers()
     .then(function(allUsers) {
       $scope.data.allUsers = allUsers;
     })
   }
+  $scope.chooseById = function() {
+    Users.chooseUser()
+    .then(function(user) {
+      $scope.data.allUsers = user;
+    })
+  }
   $scope.initialize();
   $scope.add = function() {
-    Users.addUser()
+    //just add $http.post('/api/users');
+    Users.addUser($scope.users)
     .then(function(newUser) {
-      // $scope.data.allUsers = {
-      //   name: $scope.name,
-      //   email: $scope.email,
-      // };
+      console.log(newUser, 'newuser');
+      //clear the form
+      $scope.users = {};
+      $scope.data.allUsers = newUser;
+      $scope.initialize();
     });
   };
 }]);
@@ -38,8 +46,16 @@ ang.factory('Users', ['$http', function($http){
     })
     .catch((err) => console.log(err));
   };
+  const chooseUser = function() {
+    return $http.get('/api/users/:id')
+    .then((res) => {
+      console.log(res, 'res')
+      return res.data;
+    })
+  }
   const addUser = function(user) {
-    return $http.post('/api/users')
+    //you must pass in the user data to get it through!!
+    return $http.post('/api/users', user)
     .then((res) => {
       return res.data;
     })
@@ -48,5 +64,6 @@ ang.factory('Users', ['$http', function($http){
   return {
     getUsers,
     addUser,
+    chooseUser,
   };
 }]);

@@ -10,14 +10,18 @@
     <h1>Add and View Users</h1>
 
     <div ng-controller="UserController" ng-init="initialize()">
-      <form>
-        <input name="name" placeholder="Add User Here" ng-model="users.name"/>
-        <input email="email" placeholder="Add Email Here" ng-model="users.email"/>
-        <button ng-click="add()">Add User</button>
+      <form name="adduserform">
+        <input type="integer" placeholder="Choose by ID" ng-model="users.id"/>
+        <button type="submit" ng-click="chooseById()">Submit</button>
+      </form>
+      <form name="adduserform">
+        <input type="text" name="name" placeholder="Add User Here" ng-model="users.name"/>
+        <input type="text" email="email" placeholder="Add Email Here" ng-model="users.email"/>
+        <button type="submit" ng-click="add()">Add User</button>
       </form>
       <ul ng-repeat="d in data.allUsers">
         <li>
-          {{ d.name}} </br> {{ d.email }} 
+          {{ d.name }} </br> {{ d.email }}
         </li>
       </ul>
     </div>

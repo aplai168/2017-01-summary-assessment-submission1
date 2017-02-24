@@ -1,53 +1,66 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var Users = require('./models/users');
-
 var app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(require('express-promise')());
 
 // YOUR CODE BELOW
 app.get('/api/users', (req, res) => {
   let answers = Users.getAll();
-  res.send(answers);
-  res.sendStatus(200);
+  res.status(200).send(answers);
 });
 
-app.get('/api/users/:id', (req, res) => {
-  let id = req.body.id;
-  // console.log(req.body, 'req.body')
-  let result = Users.getOne(id);
-  res.sendStatus(200);
-  res.send(result);
+app.get('/api/users/:id', (req, res) => { // async
+  let id = req.originalUrl.split('/')
+  id = id[id.length - 1];
+  let result;
+  console.log(id, 'req.originalUrl');
+  Users.getOne(id, function (err, result) {
+    if (err) throw (err);
+    res.status(200).send(result);
+  })
 });
 
-app.post('/api/users', (req, res) => {
+app.post('/api/users', function(req, res) {
+  console.log(req);
   let newUser = {
     name: req.body.name,
     email: req.body.email
   };
-  console.log(newUser);
-  Users.addOne(newUser);
-  res.sendStatus(201);
-  res.json(req.body);
-  res.end('Done');
+  Users.addOne(newUser, function(err, data){
+    if (err) throw err;
+    return data;
+  });
+  res.status(201).send('created');
 });
 
 app.put('/api/users/:id', (req, res) => {
-  let id = req.body.id;
+  let id = req.originalUrl.split('/');
+  id = id[id.length - 1];
+  // let id = req.body.id;
   let newProperties = {
     name: req.body.name,
     email: req.body.email
   };
-  User.updateOne(id, newProperties);
-  res.sendStatus(200);
-  res.end('Updated User');
+  console.log(req.body.name, 'put')
+  Users.updateOne(id, newProperties, (err, data) => {
+    if (err) throw err;
+    console.log(data, 'put data')
+    res.status(200).send(data);
+  });
 });
 
-app.delete('/api/users/:id', (req, res) => {
-  let id = req.body.id;
-  User.deleteOne(id);
-  res.sendStatus(200);
-  res.end('Deleted user');
+app.delete('/api/users/:id', (req, res) => { //asynchronous
+  let id = req.originalUrl.split('/');
+  id = id[id.length - 1];
+  Users.deleteOne(id, (err, data) => {
+    if(err) throw err;
+    res.status(200).send(data);
+  });
 });
 
 // Do not touch this invocation of the `listen` method
